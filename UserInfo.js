@@ -7,6 +7,8 @@ Displays a random number inside JSX (e.g., "Your lucky number is 7").
 
 */}
 
+import React from 'react';
+
 function UserName({name}) {
   return <h2>Name: {name}</h2>;
 }
@@ -18,7 +20,7 @@ function UserJob({job}) {
 class UserInfo extends React.Component {
   constructor(props) {
     super(props);
-      this.state = {yournumber: Math.random()};
+      this.state = {yournumber: Math.floor(Math.random() * 1000};
   }
 
   render() {
@@ -35,3 +37,5 @@ class UserInfo extends React.Component {
     );
   }
 }
+
+export default UserInfo;
