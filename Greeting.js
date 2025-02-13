@@ -7,12 +7,13 @@ Uses JavaScript expressions inside JSX (e.g., displaying the current date dynami
 
 */}
 
-function IsEven(number) {
+function isEven(number) {
   return number % 2 === 0;
 };
 
 function Greeting() {
   const number = 100;
+  
   return (
     <div>
       <h1>Hello Assignment 1</h1>
@@ -20,3 +21,5 @@ function Greeting() {
     </div>
    );
 };
+
+export default Greeting;
