@@ -32,7 +32,7 @@ function getRandomTask(tasks) {
   );
 }
 
-export default App;
+export default getRandomTask;
 
 
 
