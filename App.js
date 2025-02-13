@@ -6,6 +6,7 @@ Render them inside a single <div> (following JSX rules).
 */}
 
 import React from 'react';
+
 import Greeting from './Greeting';   
 import UserInfo from './UserInfo';   
 import GetRandomTask from './GetRandomTask'; 
