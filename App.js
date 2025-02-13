@@ -7,9 +7,9 @@ Render them inside a single <div> (following JSX rules).
 
 import React from 'react';
 
-import Greeting from './Greeting';   
-import UserInfo from './UserInfo';   
-import GetRandomTask from './GetRandomTask'; 
+import Greeting from './INF655-Assignment1/Greeting';   
+import UserInfo from './INF655-Assignment1/UserInfo';   
+import GetRandomTask from './INF655-Assignment1/GetRandomTask'; 
 
 function App() {
   const tasks = [
@@ -21,8 +21,8 @@ function App() {
   return (
     <div>
       <Greeting />
-      <UserInfo name="Alice" job="Developer" />
-      <GetRandomTask tasks={tasks} />
+      <UserInfo name="Jade, job="Student" />
+      {GetRandomTask(tasks)}
     </div>
   );
 }
