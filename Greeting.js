@@ -7,6 +7,8 @@ Uses JavaScript expressions inside JSX (e.g., displaying the current date dynami
 
 */}
 
+import React from 'react';
+
 function isEven(number) {
   return number % 2 === 0;
 };
