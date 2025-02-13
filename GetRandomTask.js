@@ -15,13 +15,13 @@ function App () {
 
   return (
     <div>
-      {GetRandomTask(tasks)}
+      {getRandomTask(tasks)}
     </div>
   );
 
 }
 
-function GetRandomTask(tasks) {
+function getRandomTask(tasks) {
   const randomIndex = Math.floor(Math.random() * tasks.length);
   const randomTask = tasks[randomIndex];
 
@@ -32,7 +32,7 @@ function GetRandomTask(tasks) {
   );
 }
 
-
+export default App;
 
 
 
