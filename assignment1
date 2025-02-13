@@ -1,0 +1,49 @@
+*/ Task 1: Create a React Component Using JSX (5 Points)
+Create a functional component called Greeting that:
+
+Uses JSX to return an <h1> element displaying a greeting message (e.g., "Hello, Welcome to React!").
+Includes a paragraph <p> with an inline style applied using JSX.
+Uses JavaScript expressions inside JSX (e.g., displaying the current date dynamically).
+
+/*
+
+function isEven(number) {
+  return number % 2 === 0;
+};
+
+function Greeting() {
+  const number = 100;
+  return (
+    <div>
+      <h1>Hello Assignment 1</h1>
+      <p style={{color: "red"}}>Is 100 an even number?: {isEven(number) ? "Yes" : "No"}</p>
+    </div>
+   );
+};
+
+
+*/ Task 2: Create a Class Component and Use JSX (5 Points)
+Create a class-based component named UserInfo that:
+
+Uses JSX to return a <div> containing a user's name and profession.
+Defines state inside the component to hold user details.
+Displays a random number inside JSX (e.g., "Your lucky number is 7").
+
+/*
+
+class UserInfo
+
+*/ Task 3: Dynamic Content Using JSX and React Components (5 Points)
+Create an array of tasks inside the App component.
+Write a function getRandomTask() that returns a random task from the list.
+Display a random task inside a <h3> using JSX.
+
+/*
+
+
+*/ Task 4: Parent and Child Components Using JSX (5 Points)
+Modify App.js to:
+
+Import the Greeting, UserInfo, and TaskComponent components.
+Render them inside a single <div> (following JSX rules).
+/*
