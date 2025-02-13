@@ -34,7 +34,6 @@ function getRandomTask(tasks) {
   );
 }
 
-export default getRandomTask;
 
 export default getRandomTask;
 
