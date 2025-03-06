@@ -10,11 +10,23 @@ Example Output:
 (Clicking the button logs the task to the console)  
 */}
 
-import React from 'react';
+import { useState } from 'react';
 
-useState() {
+function taskForm() {
 
+  const [task, ]
   
+  return (
+ `  <form>
+       <label>
+         <input type={useState("task")}/>
+       </label>
+    </form>
+    <div>
+      <button onClick{}>Submit</button>
+    </div>
+    
+  );
 };
 
 export default TaskForm; 
