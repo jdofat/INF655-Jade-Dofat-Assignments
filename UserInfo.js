@@ -5,6 +5,18 @@ Uses JSX to return a <div> containing a user's name and profession.
 Defines state inside the component to hold user details.
 Displays a random number inside JSX (e.g., "Your lucky number is 7").
 
+
+Week 2 Task 4: Pass Functions as Props (5 Points)
+Modify your UserInfo component to accept a prop called handleClick.
+In App.js, create a function handleAlert() that shows an alert when the button is clicked.
+Pass handleAlert as a prop to UserInfo.
+Example Output:
+
+Name: John Doe  
+Profession: Developer  
+[Show Alert]  
+(Clicking the button shows an alert message)  
+
 */}
 
 import React from 'react';
@@ -24,7 +36,7 @@ class UserInfo extends React.Component {
   }
 
   render() {
-    const {name, job} = this.props;
+    const {name, job, handleClick} = this.props;
     const {yournumber} = this.state;
 
 
