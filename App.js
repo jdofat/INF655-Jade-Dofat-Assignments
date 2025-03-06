@@ -7,6 +7,16 @@ Render them inside a single <div> (following JSX rules).
 Week 2 task 1:
 In App.js, render Greeting twice with different usernames.
 
+Week 2 Task 3: Display a List with Keys (5 Points)
+In App.js, create an array of 5 tasks.
+Use the .map() function to display the tasks in an unordered list <ul>.
+Add a unique key for each task.
+Example Output:
+
+- Task 1  
+- Task 2  
+- Task 3  
+
 */}
 
 import React from 'react';
@@ -32,7 +42,27 @@ function App() {
   );
 };
 
+ function moreTaskList() {
 
+   const moreTasks = [
+      "Mow the lawn",
+      "Clean the bathroom",
+      "Polish the floors",
+      "Dust the windows",
+      "Wipe the mirrors"
+    ];
+
+   return (
+    <div>
+       <ul>
+           {moreTasks.map((task, index) => (
+             <li key={task}> {task} </li>
+           ))}
+       </ul>
+    </div>
+  );
+
+};
 
 
 
