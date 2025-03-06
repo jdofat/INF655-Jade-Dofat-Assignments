@@ -24,8 +24,9 @@ function App() {
 
   return (
     <div>
-      <Greeting />
-      <UserInfo name="Jade, job="Student" />
+      <Greeting username="John"/>
+      <Greeting username="Janet"/>
+      <UserInfo name="Jade", job="Student" />
       {GetRandomTask(tasks)}
     </div>
   );
