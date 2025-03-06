@@ -39,7 +39,9 @@ import React from 'react';
 
 import Greeting from './INF655-Assignment1/Greeting';   
 import UserInfo from './INF655-Assignment1/UserInfo';   
-import GetRandomTask from './INF655-Assignment1/GetRandomTask'; 
+import GetRandomTask from './INF655-Assignment1/GetRandomTask';
+import TaskForm from './INF655-Assignment1/TaskForm';
+import TaskForm from './INF655-Assignment1/TaskForm';
 
 function App() {
   const tasks = [
