@@ -84,6 +84,13 @@ function App() {
     </div>
   );
 
+return (
+    <div>
+      <h1>Task Manager</h1>
+      <TaskForm />
+    </div>
+  );
+
 };
 
 
