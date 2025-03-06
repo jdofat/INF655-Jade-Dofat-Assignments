@@ -13,11 +13,16 @@ Example Output:
 import { useState } from 'react';
 
 function taskForm() {
-
   const [task, setTask] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("Task:", task);
+  };
   
   return (
- `  <form>
+    <div>
+ `  <form onSubmit={handleSubmit}>
        <label>Add a Task:
          <input
            type="text"
@@ -25,8 +30,9 @@ function taskForm() {
            onChange={(e) => setTask(e.target.value)}
          />
        </label>
-         <input type="Submit" />
+         <button type="submit">Submit</button>
     </form>
+    </div>
   )
 };
 
