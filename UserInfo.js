@@ -45,6 +45,7 @@ class UserInfo extends React.Component {
         <UserName name={name} />
         <UserJob job={job} />
         <p>Employee Number: {yournumber}</p>
+        <button onClick={handleAlert}>Show Alert</button>
       </div>
     );
   }
