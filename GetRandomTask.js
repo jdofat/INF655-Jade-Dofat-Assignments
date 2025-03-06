@@ -6,6 +6,8 @@ Display a random task inside a <h3> using JSX.
 
 */}
 
+import React from 'react';
+
 function App () {
   const tasks = [
     "Read",
@@ -20,8 +22,6 @@ function App () {
   );
 
 }
-
-import React from 'react';
 
 function getRandomTask(tasks) {
   const randomIndex = Math.floor(Math.random() * tasks.length);
