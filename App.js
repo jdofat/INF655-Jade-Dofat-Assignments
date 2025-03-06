@@ -95,7 +95,7 @@ return (
 
 
 
-
+export default App;
 
 
 
