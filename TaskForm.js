@@ -14,19 +14,20 @@ import { useState } from 'react';
 
 function taskForm() {
 
-  const [task, ]
+  const [task, setTask] = useState("");
   
   return (
  `  <form>
-       <label>
-         <input type={useState("task")}/>
+       <label>Add a Task:
+         <input
+           type="text"
+           value={task}
+           onChange={(e) => setTask(e.target.value)}
+         />
        </label>
+         <input type="Submit" />
     </form>
-    <div>
-      <button onClick{}>Submit</button>
-    </div>
-    
-  );
+  )
 };
 
 export default TaskForm; 
