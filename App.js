@@ -19,6 +19,22 @@ Example Output:
 
 */}
 
+
+{/*
+Week 2 Task 4:
+In App.js, create a function handleAlert() that shows an alert when the button is clicked.
+Pass handleAlert as a prop to UserInfo.
+
+Example Output:
+
+Name: John Doe  
+Profession: Developer  
+[Show Alert]  
+(Clicking the button shows an alert message)  
+
+*/}
+
+
 import React from 'react';
 
 import Greeting from './INF655-Assignment1/Greeting';   
@@ -31,6 +47,10 @@ function App() {
     "Shop",
     "Laundry"
   ];
+
+  function handleAlert() {
+    alert ("Alert!");
+  }
 
   return (
     <div>
@@ -63,6 +83,14 @@ function App() {
   );
 
 };
+
+
+
+
+
+
+
+
 
 
 
