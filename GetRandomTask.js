@@ -4,6 +4,8 @@ Create an array of tasks inside the App component.
 Write a function getRandomTask() that returns a random task from the list.
 Display a random task inside a <h3> using JSX.
 
+*/}
+
 function App () {
   const tasks = [
     "Read",
@@ -18,7 +20,6 @@ function App () {
   );
 
 }
-*/}
 
 import React from 'react';
 
