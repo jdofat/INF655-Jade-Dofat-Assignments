@@ -41,7 +41,7 @@ import Greeting from './INF655-Assignment1/Greeting';
 import UserInfo from './INF655-Assignment1/UserInfo';   
 import GetRandomTask from './INF655-Assignment1/GetRandomTask';
 import TaskForm from './INF655-Assignment1/TaskForm';
-import TaskForm from './INF655-Assignment1/TaskForm';
+import Counter from './INF655-Assignment1/Counter';
 
 function App() {
   const tasks = [
