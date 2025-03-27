@@ -78,6 +78,7 @@ function TaskForm({tasks, setTasks, deleteTask}) {
         <li key={index}>
           {task.taskName}: 
           {task.description}
+          (button onClick={( => deleteTask(index)}>delete</button>
         </li>
       ))}
     </ul>
