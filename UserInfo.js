@@ -17,6 +17,11 @@ Profession: Developer
 [Show Alert]  
 (Clicking the button shows an alert message)  
 
+Modify your UserInfo class-based component.
+Add a state property called luckyNumber that stores a random number between 1 and 100.
+Add a "Generate New Lucky Number" button that updates the lucky number in the state when clicked.
+Display the lucky number dynamically inside JSX.
+
 */}
 
 import React from 'react';
@@ -32,12 +37,21 @@ function UserJob({job}) {
 class UserInfo extends React.Component {
   constructor(props) {
     super(props);
-      this.state = {yournumber: Math.floor(Math.random() * 1000};
+      this.state = {
+        yournumber: Math.floor(Math.random() * 1000),
+        luckynumber: Math.floor(Match.random() * 100) + 1,                  
+    };
   }
 
+  newLuckyNumber = () => {
+    this.setState({
+      luckyNumber: Math.floor(Math.random() * 100) + 1,
+  });
+};
+
   render() {
-    const {name, job, handleClick} = this.props;
-    const {yournumber} = this.state;
+    const {name, job, handleAlert} = this.props;
+    const {yournumber, luckyNumber} = this.state;
 
 
     return (
@@ -46,6 +60,7 @@ class UserInfo extends React.Component {
         <UserJob job={job} />
         <p>Employee Number: {yournumber}</p>
         <button onClick={handleAlert}>Show Alert</button>
+        <button onClick={this.newLuckyNumber}>New Number</button>
       </div>
     );
   }
