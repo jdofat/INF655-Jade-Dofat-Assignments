@@ -35,7 +35,7 @@ Profession: Developer
 */}
 
 
-import React from 'react';
+import React, {useState} from 'react';
 
 import Greeting from './INF655-Assignment1/Greeting';   
 import UserInfo from './INF655-Assignment1/UserInfo';   
@@ -44,11 +44,31 @@ import TaskForm from './INF655-Assignment1/TaskForm';
 import Counter from './INF655-Assignment1/Counter';
 
 function App() {
-  const tasks = [
-    "Read",
-    "Shop",
-    "Laundry"
-  ];
+  const [tasks, setTasks] = useState([
+    {taskName: "Read", description: "read book"},
+    {taskName: "Shop", description: "go shopping"},
+    {taskName: "Laundry", description: "do laundry"},
+  ]);
+
+
+const deleteTask = (taskIndex) => {
+    const areYouSure = window.confirm("are you sure?");
+    if (areYouSure) {
+      setTasks(tasks.filter((task, index) => index !== taskIndex));
+    }
+  };
+
+  return (
+    <div>
+      
+      <h1>Task Manager</h1>
+        <TaskForm tasks={tasks} setTasks={setTasks} deleteTask={deleteTask} />
+      
+      <h2>More Tasks</h2>
+        <moreTaskList/>
+    </div>
+  );
+}
 
   function handleAlert() {
     alert ("Alert!");
@@ -74,25 +94,16 @@ function App() {
       "Wipe the mirrors"
     ];
 
-   return (
-    <div>
-       <ul>
-           {moreTasks.map((task, index) => (
-             <li key={task}> {task} </li>
-           ))}
-       </ul>
-    </div>
-  );
-
 return (
     <div>
-      <h1>Task Manager</h1>
-      <TaskForm />
+      <ul>
+        {moreTasks.map((task, index) => (
+          <li key={index}> {task} </li>
+        ))}
+      </ul>
     </div>
   );
-
-};
-
+}
 
 
 export default App;
