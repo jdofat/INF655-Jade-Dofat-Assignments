@@ -1,47 +1,16 @@
-{/* Week 1 Task 4: Parent and Child Components Using JSX (5 Points)
-Modify App.js to:
-
-Import the Greeting, UserInfo, and TaskComponent components.
-Render them inside a single <div> (following JSX rules).
-
-Week 2 task 1:
-In App.js, render Greeting twice with different usernames.
-
-Week 2 Task 3: Display a List with Keys (5 Points)
-In App.js, create an array of 5 tasks.
-Use the .map() function to display the tasks in an unordered list <ul>.
-Add a unique key for each task.
-Example Output:
-
-- Task 1  
-- Task 2  
-- Task 3  
-
-*/}
-
-
-{/*
-Week 2 Task 4:
-In App.js, create a function handleAlert() that shows an alert when the button is clicked.
-Pass handleAlert as a prop to UserInfo.
-
-Example Output:
-
-Name: John Doe  
-Profession: Developer  
-[Show Alert]  
-(Clicking the button shows an alert message)  
-
-*/}
-
-
 import React, {useState} from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
+import { auth } from './Firebase';
 
-import Greeting from './INF655-Assignment1/Greeting';   
-import UserInfo from './INF655-Assignment1/UserInfo';   
-import GetRandomTask from './INF655-Assignment1/GetRandomTask';
-import TaskForm from './INF655-Assignment1/TaskForm';
-import Counter from './INF655-Assignment1/Counter';
+import SignInForm from './INF655-Jade-Dofat-Assignments/SignInForm';
+import Firebase from './INF655-Jade-Dofat-Assignments/Firebase';
+import AuthContext from './INF655-Jade-Dofat-Assignments/AuthContext';
+import Greeting from './INF655-Jade-Dofat-Assignments/Greeting';   
+import UserInfo from './INF655-Jade-Dofat-Assignments/UserInfo';   
+import GetRandomTask from './INF655-Jade-Dofat-Assignments/GetRandomTask';
+import TaskForm from './INF655-Jade-Dofat-Assignments/TaskForm';
+import Counter from './INF655-Jade-Dofat-Assignments/Counter';
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -50,39 +19,80 @@ function App() {
     {taskName: "Laundry", description: "do laundry"},
   ]);
 
+  const [user, setUser] = useState(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsub();
+  }, []);
+
+const handleLogin = async (e) => {
+  e.preventDefault();
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+  } catch (err) {
+    alert(err.message);
+  }
+};
+
+const handleLogout = () => {
+  signOut(auth);
+};
+
 
 const deleteTask = (taskIndex) => {
     const areYouSure = window.confirm("are you sure?");
     if (areYouSure) {
       setTasks(tasks.filter((task, index) => index !== taskIndex));
-    }
+    };
   };
 
+if (!user) {
   return (
     <div>
-      
-      <h1>Task Manager</h1>
-        <TaskForm tasks={tasks} setTasks={setTasks} deleteTask={deleteTask} />
-      
-      <h2>More Tasks</h2>
-        <moreTaskList/>
+      <h2>Login</h2>
+      <form onSubmit={handleLogin}>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        /><br />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        /><br />
+        <button type="submit">Login</button>
+      </form>
     </div>
   );
 }
 
-  function handleAlert() {
-    alert ("Alert!");
-  }
+return (
+  <div>
+    <h1>Task Manager</h1>
+    <p>Welcome, {user.email}</p>
+    <button onClick={handleLogout}>Logout</button>
 
-  return (
-    <div>
-      <Greeting username="John"/>
-      <Greeting username="Janet"/>
-      <UserInfo name="Jade", job="Student" />
-      {GetRandomTask(tasks)}
-    </div>
-  );
-};
+    <Greeting username="John" />
+    <Greeting username="Janet" />
+    <UserInfo name="Jade" />
+    <UserInfo job="Student" />
+    {GetRandomTask(tasks)}
+
+    <TaskForm tasks={tasks} setTasks={setTasks} deleteTask={deleteTask} />
+
+    <h2>More Tasks</h2>
+    <MoreTaskList />
+  </div>
+);
+
 
  function moreTaskList() {
 
@@ -107,11 +117,3 @@ return (
 
 
 export default App;
-
-
-
-
-
-
-
-
