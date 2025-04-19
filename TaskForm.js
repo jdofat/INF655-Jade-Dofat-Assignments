@@ -1,48 +1,62 @@
-{/*Task 5: Create a Controlled Form (5 Points)
-Create a TaskForm component.
-Add an input field for entering a task name.
-Use useState to store the input value.
-Add a Submit button that logs the input to the console.
-Example Output:
-
-[Enter Task Name]  
-[Add Task]  
-(Clicking the button logs the task to the console)  
-
-Update your TaskComponent to include a search feature.
-Add an input field that filters the displayed tasks based on the entered text.
-Add a "Sort by Name" button that sorts the tasks alphabetically when clicked.
-
-*/}
-
 import React, { useState } from 'react';
+import { db } from './Firebase';
+import {
+  collection,
+  addDoc,
+  query,
+  where,
+  orderBy,
+  onSnapshot,
+  serverTimestamp,
+  deleteDoc,
+  doc
+} from 'firebase/firestore';
+import { auth } from './Firebase';
 
-function TaskForm({tasks, setTasks, deleteTask}) {
+
+function TaskForm() {
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    
-      if (taskName.trim() === "" || description.trim() === "") {
-        alert("enter task and description");
-          return;
-    }
-  
-    setTasks([...tasks, { taskName, description }]);
+  const [tasks, setTasks] = useState([]);
+
+  const user = auth.currentUser;
+
+  useEffect(() => {
+    if (!user) return;
+
+    const q = query(
+      collection(db, "tasks"),
+      where("userId", "==", user.uid),
+    );
+
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      setTasks(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+    });
+
+    return () => unsubscribe();
+  }, [user]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!taskName || !description) return;
+
+    await addDoc(collection(db, "tasks"), {
+      userId: user.uid,
+      taskName,
+      taskDescription: description,
+      createdAt: serverTimestamp()
+    });
+
     setTaskName("");
     setDescription("");
   };
-  
-  const handleSort = () => {
-    setTasks([...tasks].sort((a, b) => a.taskName.localeCompare(b.taskName)));
+
+  const deleteTask = async (id) => {
+    const confirmDelete = window.confirm("Are you sure");
+    if (!confirmDelete) return;
+
+    await deleteDoc(doc(db, "tasks", id));
   };
-
-  const filteredTasks = tasks.filter(task =>
-    task.taskName.toLowerCase().includes(searchTerm.toLowerCase()
-  };
-
-
 
   return (
     <div>
@@ -52,11 +66,12 @@ function TaskForm({tasks, setTasks, deleteTask}) {
            <input
              type="text"
              value={taskName}
-             onChange={(e) => setTaskName(e.target.value)
-           }/>
+             onChange={(e) => setTaskName(e.target.value)}
+             />
           </label>
           
-  <label> Description:
+  <label>
+    Description:
       <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
@@ -68,22 +83,21 @@ function TaskForm({tasks, setTasks, deleteTask}) {
     <input
       type="text"
       value={searchTerm}
-      onChange={(e) => setSearchTerm(e.target.value)
-    }/>
+      onChange={(e) => setSearchTerm(e.target.value)}
+    />
 
     <button onClick={handleSort}> Sort by: Name </button>
 
     <ul>
       {filteredTasks.map((task, index) => (
         <li key={index}>
-          {task.taskName}: 
-          {task.description}
-          (button onClick={( => deleteTask(index)}>delete</button>
+          {task.taskName}: {task.description}
+          <button onClick= {() => deleteTask(index)}>delete</button>
         </li>
       ))}
     </ul>
   </div>
- );
+  );
 }
 
 export default TaskForm; 
